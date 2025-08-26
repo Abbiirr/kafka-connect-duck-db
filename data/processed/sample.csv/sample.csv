@@ -1,0 +1,4 @@
+customer_id,full_name,date_of_birth,country_of_birth,document_type,document_number,issue_date,expiry_date,address,phone,email,submission_date
+1001,John Doe,1985-07-20,USA,Passport, P1234567,2015-08-01,2025-08-01,"123 Elm Street, Springfield",+1-555-1234,john.doe@example.com,2025-08-25T10:15:00Z
+1002,Jane Smith,1990-03-15,Canada,Driver's License, D9876543,2018-05-10,2028-05-10,"456 Oak Avenue, Toronto",+1-416-987-6543,jane.smith@example.ca,2025-08-25T10:16:30Z
+1003,Raj Patel,1978-12-02,India,Aadhar Card, 1234-5678-9012,2019-01-01,2029-01-01,"789 Maple Road, Mumbai",+91-98765-43210,raj.patel@example.in,2025-08-25T10:17:45Z

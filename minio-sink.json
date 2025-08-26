@@ -1,23 +1,22 @@
 {
   "name": "minio-sink-banking",
-  "config": {
-    "connector.class": "io.confluent.connect.s3.S3SinkConnector",
-    "tasks.max": "4",
-    "topics.regex": "db\\.public\\..*|files\\..*",
-
-    "s3.region": "us-east-1",
-    "s3.bucket.name": "banking-lake",
-    "s3.endpoint": "http://minio:9000",
-    "s3.path.style.access.enabled": true,
-    "aws.access.key.id": "minioadmin",
-    "aws.secret.access.key": "minioadmin123",
-
-    "storage.class": "io.confluent.connect.s3.storage.S3Storage",
-    "format.class": "io.confluent.connect.s3.format.parquet.ParquetFormat",
-    "partitioner.class": "io.confluent.connect.storage.partitioner.TimeBasedPartitioner",
-    "path.format": "yyyy/MM/dd/HH",
-    "flush.size": "1000",
-    "rotate.interval.ms": "300000",
-    "timezone": "UTC"
-  }
+  "connector.class": "io.confluent.connect.s3.S3SinkConnector",
+  "tasks.max": "4",
+  "topics.regex": "db\\.public\\..*|files\\..*",
+  "s3.bucket.name": "banking-lake",
+  "s3.region": "us-east-1",
+  "store.url": "http://minio:9000",
+  "s3.path.style.access.enabled": "true",
+  "aws.access.key.id": "minioadmin",
+  "aws.secret.access.key": "minioadmin123",
+  "storage.class": "io.confluent.connect.s3.storage.S3Storage",
+  "format.class": "io.confluent.connect.s3.format.parquet.ParquetFormat",
+  "partitioner.class": "io.confluent.connect.storage.partitioner.TimeBasedPartitioner",
+  "path.format": "yyyy/MM/dd/HH",
+  "flush.size": "1000",
+  "rotate.interval.ms": "300000",
+  "timezone": "UTC",
+  "partition.duration.ms": "3600000",
+  "timestamp.extractor": "Record",
+  "locale": "en-US"
 }
