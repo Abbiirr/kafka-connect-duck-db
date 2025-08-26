@@ -1,0 +1,28 @@
+{
+  "name": "banking-debezium-postgres",
+  "config": {
+    "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+    "database.hostname": "10.112.30.10",
+    "database.port": "6432",
+    "database.user": "debezium_user",
+    "database.password": "debezium_pass",
+    "database.dbname": "banking_core",
+    "topic.prefix": "banking-db",
+    "plugin.name": "pgoutput",
+
+    "slot.name": "debezium_banking",
+    "publication.name": "dbz_publication",
+    "publication.autocreate.mode": "disabled",
+
+    "schema.include.list": "public",
+    "table.include.list": "public.customer,public.account,public.kyc_submission,public.loan_application",
+
+
+    "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "transforms": "route",
+    "transforms.route.type": "org.apache.kafka.connect.transforms.RegexRouter",
+    "transforms.route.regex": "banking-db\\.public\\.(.*)",
+    "transforms.route.replacement": "db.public.$1"
+  }
+}

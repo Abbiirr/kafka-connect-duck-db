@@ -1,0 +1,54 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: postgres-etl
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: banking_core
+    command: >
+      postgres -c wal_level=logical
+               -c max_wal_senders=10
+               -c max_replication_slots=10
+               -c shared_preload_libraries=pg_stat_statements
+    ports: [ "0.0.0.0:6432:5432" ]
+    volumes:
+      - ./dbinit:/docker-entrypoint-initdb.d    # seeds user/tables on first run
+      - pgdata:/var/lib/postgresql/data
+  connect:
+    image: confluentinc/cp-kafka-connect:7.4.0
+    restart: unless-stopped
+    ports: ["0.0.0.0:8083:8083"]
+    environment:
+      CONNECT_BOOTSTRAP_SERVERS: "172.16.231.135:31000"
+      CONNECT_REST_PORT: 8083
+      CONNECT_GROUP_ID: "quickstart"
+      CONNECT_CONFIG_STORAGE_TOPIC: "quickstart-config"
+      CONNECT_OFFSET_STORAGE_TOPIC: "quickstart-offsets"
+      CONNECT_STATUS_STORAGE_TOPIC: "quickstart-status"
+      CONNECT_CONFIG_STORAGE_REPLICATION_FACTOR: "1"
+      CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR: "1"
+      CONNECT_STATUS_STORAGE_REPLICATION_FACTOR: "1"
+      CONNECT_KEY_CONVERTER: "org.apache.kafka.connect.storage.StringConverter"
+      CONNECT_KEY_CONVERTER_SCHEMAS_ENABLE: "false"
+      CONNECT_VALUE_CONVERTER: "org.apache.kafka.connect.json.JsonConverter"
+      CONNECT_VALUE_CONVERTER_SCHEMAS_ENABLE: "true"
+      CONNECT_PLUGIN_PATH: "/usr/share/java,/usr/share/confluent-hub-components,/usr/share/local-connectors"
+      CONNECT_REST_ADVERTISED_HOST_NAME: "connect"
+    volumes:
+      - ./connectors:/usr/share/local-connectors
+      - ./data:/data  # for SpoolDir (input/finished/error)
+
+  minio:
+    image: minio/minio:latest
+    restart: unless-stopped
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin123
+    ports: ["0.0.0.0:9000:9000", "0.0.0.0:9001:9001"]
+    volumes:
+      - minio-data:/data
+
+volumes:
+  pgdata:
+  minio-data:

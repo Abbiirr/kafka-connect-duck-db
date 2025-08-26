@@ -1,0 +1,17 @@
+{
+  "name": "kyc-files-spooldir",
+  "config": {
+    "connector.class": "com.github.jcustenborder.kafka.connect.spooldir.SpoolDirCsvSourceConnector",
+    "topic": "files.kyc_uploads",
+    "input.path": "/data/kyc-uploads",
+    "finished.path": "/data/processed",
+    "error.path": "/data/error",
+    "input.file.pattern": ".*\\.csv",
+    "csv.first.row.as.header": true,
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "transforms": "addTimestamp",
+    "transforms.addTimestamp.type": "org.apache.kafka.connect.transforms.InsertField$Value",
+    "transforms.addTimestamp.timestamp.field": "file_processed_at"
+  }
+}
