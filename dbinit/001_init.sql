@@ -39,3 +39,9 @@ GRANT CONNECT ON DATABASE banking_core TO debezium_user;
 GRANT USAGE ON SCHEMA public TO debezium_user;
 GRANT SELECT ON ALL TABLES IN SCHEMA public TO debezium_user;
 ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT ON TABLES TO debezium_user;
+
+GRANT CONNECT ON DATABASE banking_core TO debezium_user;
+GRANT USAGE ON SCHEMA public TO debezium_user;
+GRANT SELECT ON ALL TABLES IN SCHEMA public TO debezium_user;
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT ON TABLES TO debezium_user;
+CREATE PUBLICATION dbz_publication FOR TABLE public.customer, public.account, public.kyc_submission, public.loan_application;
