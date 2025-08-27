@@ -1,3 +1,13 @@
-/connectors/
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
 
-.idea/
+# Virtual environments
+.venv
+
+.env
+/connectors/

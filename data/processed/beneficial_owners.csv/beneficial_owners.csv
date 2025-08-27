@@ -1,0 +1,3 @@
+customer_id,bo_full_name,national_id,nationality,ownership_percent,control_role,pep_flag,verification_status,verified_on,evidence_file,remarks,created_at
+1001,Karim Uddin,1985-4455667788,BD,25.0,DIRECTOR,False,VERIFIED,2025-08-22T08:00:00Z,s3://banking-lake/kyc/rahim_uddin/bo_karim_id.jpg,seed,2025-08-22T07:55:00Z
+1002,Shorna Akter,1990-1122334455,BD,20.0,SHAREHOLDER,False,PENDING,,,seed,2025-08-23T10:28:00Z

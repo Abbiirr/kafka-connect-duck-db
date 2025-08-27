@@ -1,0 +1,15 @@
+{
+  "connector.class": "com.github.jcustenborder.kafka.connect.spooldir.SpoolDirCsvSourceConnector",
+  "tasks.max": "1",
+  "topic": "files.screening_results",
+  "input.path": "/data/kyc-uploads",
+  "finished.path": "/data/processed",
+  "error.path": "/data/error",
+  "input.file.pattern": "^screening_results\\.csv$",
+  "csv.first.row.as.header": "true",
+  "schema.generation.enabled": "true",
+  "schema.generation.key.fields": "customer_id",
+  "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+  "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+  "value.converter.schemas.enable": "true"
+}

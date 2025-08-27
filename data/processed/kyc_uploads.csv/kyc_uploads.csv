@@ -1,0 +1,5 @@
+customer_id,upload_type,file_name,checksum_sha256,notes,created_at
+1001,IDENTITY_DOC,nid_front.jpg,a7b9d9f3a2c6c2a3d0b56c9e2b1a7cfe7a1b2c3d4e5f67890123456789abcdef,front side of NID,2025-08-22T06:30:00Z
+1001,ADDRESS_PROOF,utility_bill_jul.jpg,3f2e1d0c9b8a7766554433221100ffeeddccbbaa0099887766554433221100ff,DPDC bill July 2025,2025-08-22T06:35:00Z
+1002,IDENTITY_DOC,nid_front.jpg,abcdefabcdefabcdefabcdefabcdefabcdefabcdefabcdefabcdefabcdefabcd,front side of NID,2025-08-23T09:30:00Z
+1002,ADDRESS_PROOF,bank_statement_sep.pdf,00112233445566778899aabbccddeeff00112233445566778899aabbccddeeff,September statement,2025-08-23T09:40:00Z
