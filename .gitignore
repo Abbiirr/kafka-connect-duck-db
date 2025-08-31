@@ -11,3 +11,4 @@ wheels/
 
 .env
 /connectors/
+.idea/
